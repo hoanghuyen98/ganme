@@ -160,11 +160,14 @@
   
 <script>
     import $ from "jquery";
+    import ApiService from "@/services/api.service";
     import { ref } from "vue";
     export default {
 
     setup() {
         const name_row = ['Trình Bày', 'Hỏi', 'Đáp', 'Cướp Điểm', 'Tổng Điểm']
+        const data_default = ApiService.getData()
+        console.log('data_default: ', data_default)
         const id_team = ref(null)
         const data = [
             {
