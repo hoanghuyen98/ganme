@@ -64,7 +64,7 @@
                                 </div>
                             </td>
                             <td v-for="(item) in data" :key="item">
-                                <p class="fw-normal mb-1 total-point">{{item.point.total}}</p>
+                                <p class="mb-1 total-point">{{item.point.total}}</p>
                             </td>
                         </tr>
                         <!-- <tr>
@@ -310,15 +310,24 @@
             }
         }
         
+        let timeOutId = null;
         const updateData = (event) => {
             const index = event.target.getAttribute("data-id")
             addClass(index)
-            flyMeTo('reduce', event.target, true)
+            if (timeOutId != null) {
+                clearTimeout(timeOutId);
+            }
+            
+            const id = setTimeout(() => {
+                flyMeTo('reduce', event.target, true);
+                console.log('run');
+            }, 400);
+            timeOutId = id;
         }
 
         function flyMeTo(elem, destination, prepend) {
             var $elem = $('#' + elem);
-            $elem.parent().append( '<p class="fw-normal mb-1 answer-vote" :data-id="index">0</p>' )
+            $elem.parent().append( '<p class="fw-normal mb-1 answer-vote">0</p>' )
             var $dest = $(destination);
             const id_destination = $dest.attr('data-id')
             const id_start = $elem.attr('data-id')
@@ -340,6 +349,12 @@
                     $klon.remove();         // Remove flying clone once it reaches destination
                     $elem.css({opacity:1}); // Show original Element
                     $dest.text($elem.text());
+                    total_point_destination_element.style.color = '#32a732';
+                    total_point_destination_element.style.fontWeight = '600';
+                    total_point_destination_element.style.fontSize = '1rem';
+                    total_point_start_element.style.color = '#ff0000';
+                    total_point_start_element.style.fontWeight = '600';
+                    total_point_start_element.style.fontSize = '1rem';
                     countTo(data[id_destination]['point']['total'], data[id_destination]['point_after_steal']['total'], total_point_destination_element)
                     countTo(data[id_start]['point']['total'], data[id_start]['point_after_steal']['total'], total_point_start_element)
                 });
