@@ -24,7 +24,7 @@
                                 </div>
                             </td>
                             <td v-for="(item) in data" :key="item">
-                                <p class="fw-normal mb-1">{{item.present_point}}</p>
+                                <p class="fw-normal mb-1">{{item.point.present}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -34,7 +34,7 @@
                                 </div>
                             </td>
                             <td v-for="(item) in data" :key="item">
-                                <p class="fw-normal mb-1 question-vote">{{item.question_point}}</p>
+                                <p class="fw-normal mb-1 question-vote">{{item.point.question}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +44,7 @@
                                 </div>
                             </td>
                             <td v-for="(item) in data" :key="item">
-                                <p class="fw-normal mb-1 answer-vote">{{item.answer_point}}</p>
+                                <p class="fw-normal mb-1 answer-vote">{{item.point.answer}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -64,7 +64,7 @@
                                 </div>
                             </td>
                             <td v-for="(item) in data" :key="item">
-                                <p class="fw-normal mb-1 total-poin">{{item.total_1}}</p>
+                                <p class="fw-normal mb-1 total-point">{{item.point.total}}</p>
                             </td>
                         </tr>
                         <!-- <tr>
@@ -168,84 +168,123 @@
         const id_team = ref(null)
         const data = [
             {
-                "answer_point": 15, 
                 "answer_vote": 0, 
                 "id": 1, 
-                "name": "Team 01", 
-                "opposite_team": "Team 02", 
-                "present_point": 85, 
-                "question_point": 0, 
-                "question_vote": 0,
-                "total_1": 100,
-                "total_2": 85,
+                "name": "team_1", 
+                "opposite_team": "team_2", 
+                "point": {
+                    "answer": 15, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 100
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 85
+                }, 
+                "question_vote": 0
             }, 
+
             {
-                "answer_point": 0, 
                 "answer_vote": 0, 
                 "id": 2, 
-                "name": "Team 02", 
-                "opposite_team": "Team 01", 
-                "present_point": 0, 
-                "question_point": 16, 
-                "question_vote": 2,
-                "total_1": 16,
-                "total_2": 31,
+                "name": "team_2", 
+                "opposite_team": "team_1", 
+                "point": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 16
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 31
+                }, 
+                "question_vote": 2
             },
             {
-                "answer_point": 15, 
-                "answer_vote": 2, 
+                "answer_vote": 0, 
                 "id": 1, 
-                "name": "Team 03", 
-                "opposite_team": "Team 04", 
-                "present_point": 85, 
-                "question_point": 0, 
-                "question_vote": 0,
-                "total_1": 100,
-                "total_2": 116,
+                "name": "team_1", 
+                "opposite_team": "team_2", 
+                "point": {
+                    "answer": 15, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 100
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 85
+                }, 
+                "question_vote": 0
             }, 
+
             {
-                "answer_point": 0, 
                 "answer_vote": 0, 
                 "id": 2, 
-                "name": "Team 04", 
-                "opposite_team": "Team 03", 
-                "present_point": 0, 
-                "question_point": 16, 
-                "question_vote": 0,
-                "total_1": 16,
-                "total_2": 0,
+                "name": "team_2", 
+                "opposite_team": "team_1", 
+                "point": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 16
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 31
+                }, 
+                "question_vote": 2
             },
             {
-                "answer_point": 15, 
-                "answer_vote": 2, 
+                "answer_vote": 0, 
                 "id": 1, 
-                "name": "Team 05", 
-                "opposite_team": "Team 06", 
-                "present_point": 0, 
-                "question_point": 0, 
-                "question_vote": 0,
-                "total_1": 15,
-                "total_2": 31,
+                "name": "team_1", 
+                "opposite_team": "team_2", 
+                "point": {
+                    "answer": 15, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 100
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 85, 
+                    "question": 0, 
+                    "total": 85
+                }, 
+                "question_vote": 0
             }, 
+
             {
-                "answer_point": 0, 
                 "answer_vote": 0, 
                 "id": 2, 
-                "name": "Team 06", 
-                "opposite_team": "Team 05", 
-                "present_point": 50, 
-                "question_point": 16, 
-                "question_vote": 0,
-                "total_1": 66,
-                "total_2": 50,
+                "name": "team_2", 
+                "opposite_team": "team_1", 
+                "point": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 16
+                }, 
+                "point_after_steal": {
+                    "answer": 0, 
+                    "present": 0, 
+                    "question": 16, 
+                    "total": 31
+                }, 
+                "question_vote": 2
             },
         ]
-
-        // const filterTeam = () => {
-        //     return data.filter(
-        //         item => 
-        //     )
-        // }
 
         const addClass = (index) => {
             for(let i = 0; i < data.length; i++){
@@ -254,14 +293,15 @@
                     if(data[index]['answer_vote'] > data[i]['question_vote']){
                         const answer_vote_element = document.getElementsByClassName('question-vote')[i]
                         answer_vote_element.setAttribute("id", "reduce");
+                        answer_vote_element.setAttribute("data-id", i);
                     }
                     else if(data[index]['question_vote'] > data[i]['answer_vote']){
                         const question_vote_element = document.getElementsByClassName('answer-vote')[i]
+                        console.log('i: ', i)
                         question_vote_element.setAttribute("id", "reduce");
+                        question_vote_element.setAttribute("data-id", i);
                     }
-                    //     const answer_vote_element = document.getElementsByClassName('answer-vote')[index]
-
-                    // }
+           
                     break
                 } 
             }
@@ -269,24 +309,24 @@
         
         const updateData = (event) => {
             const index = event.target.getAttribute("data-id")
-           
-          
             addClass(index)
             flyMeTo('reduce', event.target, true)
         }
 
         function flyMeTo(elem, destination, prepend) {
             var $elem = $('#' + elem);
-            $elem.parent().append( "<p class='fw-normal mb-1'>0</p>" )
-            
+            $elem.parent().append( '<p class="fw-normal mb-1 answer-vote" :data-id="index">0</p>' )
             var $dest = $(destination);
             const id_destination = $dest.attr('data-id')
-            const total_point_element = document.getElementsByClassName('total-poin')[id_destination]
+            const id_start = $elem.attr('data-id')
+            const total_point_destination_element = document.getElementsByClassName('total-point')[id_destination]
+            const total_point_start_element = document.getElementsByClassName('total-point')[id_start]
             // Early exit - if already in destination
             if($elem.parent().is(destination)) return;
 
             var $klon = $elem.clone().insertAfter($elem);
             let alam = document.getElementById(elem);
+            
             if (alam) {
                 var start = alam.getBoundingClientRect();
                 $klon.css({position:"fixed", zIndex:9999, left:start.left, top:start.top, pointerEvents:'none'});
@@ -296,16 +336,15 @@
                 $klon.animate({left:end.left, top:end.top}, 1000, function() {
                     $klon.remove();         // Remove flying clone once it reaches destination
                     $elem.css({opacity:1}); // Show original Element
-                    console.log('$elem: ', $elem.text())
                     $dest.text($elem.text());
-                    console.log('$dest: ', $dest)
-                    countTo(data[id_destination]['total_1'], data[id_destination]['total_2'], total_point_element)
+                    countTo(data[id_destination]['point']['total'], data[id_destination]['point_after_steal']['total'], total_point_destination_element)
+                    countTo(data[id_start]['point']['total'], data[id_start]['point_after_steal']['total'], total_point_start_element)
                 });
                 $dest.text('???');
             }else {
                 $dest.text('0')
                 $dest.css({color:'red'});
-                countTo(data[id_destination]['total_1'], data[id_destination]['total_2'], total_point_element)
+                // countTo(data[id_destination]['point']['total'], data[id_destination]['point_after_steal']['total'], total_point_element)
             }
 
             
